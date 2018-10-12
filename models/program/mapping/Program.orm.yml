@@ -1,0 +1,25 @@
+app\models\program\Program:
+  type: entity
+  table: program
+  id:
+    id:
+      id: true
+      column: id
+      type: Type\Program\Id
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: 'app\components\HashIdGenerator'
+  fields:
+    code:
+      column: code
+      type: Type\Program\Code
+      nullable: false
+    description:
+      column: description
+      type: Type\Program\Description
+      nullable: false
+  oneToMany:
+    applications:
+      targetEntity: app\models\application\Application
+      mappedBy: program

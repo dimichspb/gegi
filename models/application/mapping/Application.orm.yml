@@ -1,0 +1,34 @@
+app\models\application\Application:
+  type: entity
+  table: application
+  id:
+    id:
+      id: true
+      column: id
+      type: Type\Application\Id
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: 'app\components\HashIdGenerator'
+  fields:
+    count:
+      column: count
+      type: Type\Application\Count
+      nullable: false
+  manyToOne:
+    program:
+      targetEntity: app\models\program\Program
+      inversedBy: applications
+      cascade:
+        - persist
+      joinColumn:
+        name: program_id
+        referencedColumnName: id
+    month:
+      targetEntity: app\models\month\Month
+      inversedBy: applications
+      cascade:
+        - persist
+      joinColumn:
+        name: month_id
+        referencedColumnName: id
